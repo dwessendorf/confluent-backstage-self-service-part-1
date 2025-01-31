@@ -29,4 +29,4 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         working-directory: ./terraform
-        run: terraform apply -auto-approve -var '"confluent_cloud_api_key=${{ secrets.CONFLUENT_CLOUD_API_KEY }}"' -var '"confluent_cloud_api_secret=${{ secrets.CONFLUENT_CLOUD_API_SECRET }}"'        run: terraform apply -chdir=./terraform -auto-approve -var "confluent_cloud_api_key=${{ secrets.CONFLUENT_CLOUD_API_KEY }}" -var "confluent_cloud_api_secret=${{ secrets.CONFLUENT_CLOUD_API_SECRET }}"
+        run: terraform apply -chdir=./terraform -auto-approve -var "confluent_cloud_api_key=${{ secrets.CONFLUENT_CLOUD_API_KEY }}" -var "confluent_cloud_api_secret=${{ secrets.CONFLUENT_CLOUD_API_SECRET }}"
