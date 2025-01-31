@@ -20,16 +20,13 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Init
-        working-directory: ./terraform
-        run: terraform init
+        run: terraform init -chdir=./terraform
 
       - name: Terraform Plan
-        working-directory: ./terraform
-        run: terraform plan \
+        run: terraform plan -chdir=./terraform \
           -var "confluent_cloud_api_key=${{ secrets.CONFLUENT_CLOUD_API_KEY }}" \
           -var "confluent_cloud_api_secret=${{ secrets.CONFLUENT_CLOUD_API_SECRET }}"
-
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         working-directory: ./terraform
-        run: terraform apply -auto-approve -var '"confluent_cloud_api_key=${{ secrets.CONFLUENT_CLOUD_API_KEY }}"' -var '"confluent_cloud_api_secret=${{ secrets.CONFLUENT_CLOUD_API_SECRET }}"'
+        run: terraform apply -auto-approve -var '"confluent_cloud_api_key=${{ secrets.CONFLUENT_CLOUD_API_KEY }}"' -var '"confluent_cloud_api_secret=${{ secrets.CONFLUENT_CLOUD_API_SECRET }}"'        run: terraform apply -chdir=./terraform -auto-approve -var "confluent_cloud_api_key=${{ secrets.CONFLUENT_CLOUD_API_KEY }}" -var "confluent_cloud_api_secret=${{ secrets.CONFLUENT_CLOUD_API_SECRET }}"
