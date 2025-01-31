@@ -3,7 +3,7 @@ provider "confluent" {
   cloud_api_secret = var.confluent_cloud_api_secret
 }
 
-# Create Confluent Environment
+# Create Confluent Environment 
 resource "confluent_environment" "env" {
   display_name = var.environment_name
 }
@@ -17,6 +17,6 @@ resource "confluent_kafka_cluster" "basic_cluster" {
   environment {
     id =   confluent_environment.env.id
   } 
-  basic { }     
+  basic { }    
 }
 
