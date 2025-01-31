@@ -8,6 +8,7 @@ resource "confluent_environment" "env" {
   display_name = var.environment_name
 }
 
+
 # Create a Basic Cluster in that Environment
 resource "confluent_kafka_cluster" "basic_cluster" {
   display_name         = var.cluster_name

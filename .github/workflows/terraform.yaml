@@ -40,12 +40,8 @@ jobs:
 
       - name: Terraform Plan
         if: github.event_name == 'pull_request'
-        run: terraform plan \
-          -var "confluent_cloud_api_key=${{ secrets.CONFLUENT_CLOUD_API_KEY }}" \
-          -var "confluent_cloud_api_secret=${{ secrets.CONFLUENT_CLOUD_API_SECRET }}"
+        run: terraform plan -var "confluent_cloud_api_key=${{ secrets.CONFLUENT_CLOUD_API_KEY }}" -var "confluent_cloud_api_secret=${{ secrets.CONFLUENT_CLOUD_API_SECRET }}"
 
       - name: Terraform Apply
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: terraform apply -auto-approve \
-          -var "confluent_cloud_api_key=${{ secrets.CONFLUENT_CLOUD_API_KEY }}" \
-          -var "confluent_cloud_api_secret=${{ secrets.CONFLUENT_CLOUD_API_SECRET }}"
+        run: terraform apply -auto-approve -var "confluent_cloud_api_key=${{ secrets.CONFLUENT_CLOUD_API_KEY }}" -var "confluent_cloud_api_secret=${{ secrets.CONFLUENT_CLOUD_API_SECRET }}"
