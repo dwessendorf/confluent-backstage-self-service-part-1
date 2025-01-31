@@ -32,26 +32,7 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: ${{ env.TF_VERSION }}
 
-      - name: Create Terraform Provider Config
-        run: |
-          cat > provider.tf <<EOF
-          terraform {
-            required_providers {
-              confluent = {
-                source  = "confluentinc/confluent"
-                version = "~> 1.51.0"
-              }
-            }
-          }
-
-          provider "confluent" {
-            cloud_api_key    = "${{ env.CONFLUENT_CLOUD_API_KEY }}"
-            cloud_api_secret = "${{ env.CONFLUENT_CLOUD_API_SECRET }}"
-          }
-          EOF
 
       - name: Terraform Format Check
         run: terraform fmt -check -recursive
